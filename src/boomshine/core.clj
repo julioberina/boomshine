@@ -19,13 +19,11 @@
   (q/background 0 0 0)
 
   (doseq [item (:bubbles state)]
-    ; Set color
-    (case (rand-int 3)
-      0 (q/fill 255 0 0)
-      1 (q/fill 0 255 0)
-      2 (q/fill 0 0 255))
-    ; Draw ellipse
-    (q/ellipse (:x @item) (:y @item) 20 20)))
+    (let [[r g b] (:clr @item)]
+      ; Set color
+      (q/fill r g b)
+      ; Draw ellipse
+      (q/ellipse (:x @item) (:y @item) 20 20))))
 
 
 (q/defsketch boomshine

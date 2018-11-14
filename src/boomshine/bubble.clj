@@ -12,7 +12,7 @@
   (hits-left-or-right? [this x])
   (move [this]))
 
-(defrecord Bubble [x y angle]
+(defrecord Bubble [x y angle clr]
 
   BubbleProtocol
   (top-quad? [this angle] (and (>= angle 0.0) (<= angle 180.0)))
@@ -31,4 +31,5 @@
       (assoc this :x (+ x (cos @a)) :y (+ y (* (sin @a) -1)) :angle @a))))
 
 (defn generate-bubble []
-  (->Bubble (+ (rand-int 778) 11) (+ (rand-int 578) 11) (rand-int 360)))
+  (let [clr (case (rand-int 3) 0 [255 0 0] 1 [0 255 0] 2 [0 0 255])]
+    (->Bubble (+ (rand-int 778) 11) (+ (rand-int 578) 11) (rand-int 360) clr)))
