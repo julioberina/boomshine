@@ -31,5 +31,10 @@
       (assoc this :x (+ x (cos @a)) :y (+ y (* (sin @a) -1)) :angle @a))))
 
 (defn generate-bubble []
-  (let [clr (case (rand-int 3) 0 [255 0 0] 1 [0 255 0] 2 [0 0 255])]
-    (->Bubble (+ (rand-int 778) 11) (+ (rand-int 578) 11) (rand-int 360) clr)))
+  (let [clr (atom [])]
+    (case (rand-int 4)
+      0 (reset! clr [255 0 0]) ; red
+      1 (reset! clr [0 255 0]) ; green
+      2 (reset! clr [0 0 255]) ; blue
+      3 (reset! clr [255 255 0])) ; yellow
+    (->Bubble (+ (rand-int 778) 11) (+ (rand-int 578) 11) (rand-int 360) @clr)))
