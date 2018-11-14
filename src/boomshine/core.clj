@@ -29,7 +29,7 @@
 
 
 (q/defsketch boomshine
-  :title "You spin my circle right round"
+  :title "Boomshine"
   :size [800 600]
   ; setup function called only once, during sketch initialization.
   :setup setup
