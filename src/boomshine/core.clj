@@ -17,10 +17,14 @@
 (defn draw-state [state]
   ; Clear the sketch by filling it with light-grey color.
   (q/background 0 0 0)
-  ; Set color
-  (q/fill 255 0 0)
-  ; Draw ellipse
+
   (doseq [item (:bubbles state)]
+    ; Set color
+    (case (rand-int 3)
+      0 (q/fill 255 0 0)
+      1 (q/fill 0 255 0)
+      2 (q/fill 0 0 255))
+    ; Draw ellipse
     (q/ellipse (:x @item) (:y @item) 20 20)))
 
 
